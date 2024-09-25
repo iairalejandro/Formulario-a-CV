@@ -1,8 +1,30 @@
 <?php
-
 session_start();
 
-if (!isset($_SESSION['nombre'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nombre = $_POST['nombre'];
+    $fecha_nacimiento = $_POST['fecha_nacimiento'];
+    $ocupacion = $_POST['ocupacion'];
+    $ocupacionFormateado = ucwords(strtolower($ocupacion));
+    $contacto = $_POST['contacto'];
+    $nacionalidad = $_POST['nacionalidad'];
+    $nivel_ingles = $_POST['nivel_ingles'];
+    $lenguajes_programacion = isset($_POST['lenguajes_programacion']) ? implode(", ", $_POST['lenguajes_programacion']) : '';
+    $aptitudes = $_POST['aptitudes'];
+    $habilidades = isset($_POST['habilidades']) ? implode(", ", $_POST['habilidades']) : '';
+    $perfil = $_POST['perfil'];
+
+    $_SESSION['nombre'] = $nombre;
+    $_SESSION['fecha_nacimiento'] = $fecha_nacimiento;
+    $_SESSION['ocupacion'] = $ocupacionFormateado;
+    $_SESSION['contacto'] = $contacto;
+    $_SESSION['nacionalidad'] = $nacionalidad;
+    $_SESSION['nivel_ingles'] = $nivel_ingles;
+    $_SESSION['lenguajes_programacion'] = $lenguajes_programacion;
+    $_SESSION['aptitudes'] = $aptitudes;
+    $_SESSION['habilidades'] = $habilidades;
+    $_SESSION['perfil'] = $perfil;
+} else {
     header("Location: index.html");
     exit;
 }
@@ -85,7 +107,6 @@ $perfil = $_SESSION['perfil'];
             <div class="other-interests">
                 <h2>Otros intereses</h2>
                 <ul>
-                    <li>Creador de yincanas</li>
                     <li>Paseos ecológicos grupales</li>
                     <li>Lectura grupal en inglés</li>
                 </ul>
