@@ -1,15 +1,12 @@
 <?php
-// Iniciar la sesión
+
 session_start();
 
-// Verificar si los datos están disponibles
 if (!isset($_SESSION['nombre'])) {
-    // Si no hay datos, redirigir al formulario
     header("Location: index.html");
     exit;
 }
 
-// Obtener los datos de la sesión
 $nombre = $_SESSION['nombre'];
 $ocupacionFormateado = $_SESSION['ocupacion'];
 $contacto = $_SESSION['contacto'];
